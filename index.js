@@ -7,7 +7,7 @@ const Vision = require('vision');
 
 
 const server = new Hapi.Server();
-server.connection({ port: 3000, host: '0.0.0.0' });
+server.connection({ port: 4000, host: '0.0.0.0' });
 
 server.register([Vision, Inert], (err) => {
   if (err) {
