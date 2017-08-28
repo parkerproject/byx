@@ -1,0 +1,18 @@
+{
+  "name": "byxmedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "hapi": "^16.5.2",
+    "inert": "^4.2.1",
+    "swig": "^1.4.2",
+    "vision": "^4.1.1"
+  }
+}
