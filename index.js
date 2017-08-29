@@ -4,6 +4,7 @@ const Hapi = require('hapi');
 const html = require('swig');
 const Inert = require('inert');
 const Vision = require('vision');
+const Path = require('path');
 
 
 const server = new Hapi.Server();
@@ -34,27 +35,7 @@ server.register([Vision, Inert], (err) => {
     path: '/{param*}',
     handler: {
       directory: {
-        path: 'public',
-      },
-    },
-  });
-
-    server.route({
-    method: 'GET',
-    path: '/css/{param*}',
-    handler: {
-      directory: {
-        path: 'public/css',
-      },
-    },
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/js/{param*}',
-    handler: {
-      directory: {
-        path: 'public/js',
+        path: Path.join(__dirname, 'public')
       },
     },
   });
