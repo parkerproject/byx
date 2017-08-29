@@ -41,6 +41,26 @@ server.register([Vision, Inert], (err) => {
 
     server.route({
     method: 'GET',
+    path: '/css/{param*}',
+    handler: {
+      directory: {
+        path: 'public/css',
+      },
+    },
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/js/{param*}',
+    handler: {
+      directory: {
+        path: 'public/js',
+      },
+    },
+  });
+
+    server.route({
+    method: 'GET',
     path: '/video/{param*}',
     handler: {
       directory: {
