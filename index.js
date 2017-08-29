@@ -38,29 +38,6 @@ server.register([Vision, Inert], (err) => {
       },
     },
   });
-
-  server.route({
-    method: 'GET',
-    path: '/video/{param*}',
-    handler: {
-      directory: {
-        path: 'video',
-      },
-    },
-  });
-
-    server.route({
-    method: 'GET',
-    path: '/img/logo.png',
-    handler: {
-      directory: {
-        path: 'public/img',
-      },
-    },
-  });
-
-
-
 });
 
 
