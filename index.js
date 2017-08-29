@@ -4,7 +4,6 @@ const Hapi = require('hapi');
 const html = require('swig');
 const Inert = require('inert');
 const Vision = require('vision');
-const Path = require('path');
 
 
 const server = new Hapi.Server();
@@ -35,12 +34,12 @@ server.register([Vision, Inert], (err) => {
     path: '/{param*}',
     handler: {
       directory: {
-        path: Path.join(__dirname, 'public')
+        path: 'public'
       },
     },
   });
 
-    server.route({
+  server.route({
     method: 'GET',
     path: '/video/{param*}',
     handler: {
@@ -49,6 +48,19 @@ server.register([Vision, Inert], (err) => {
       },
     },
   });
+
+    server.route({
+    method: 'GET',
+    path: '/img/logo.png',
+    handler: {
+      directory: {
+        path: 'public/img',
+      },
+    },
+  });
+
+
+
 });
 
 
