@@ -120,13 +120,7 @@
 
     </style>
 
-    <script type="text/javascript" src="https://www.foodanddating.com/public/ghost-sdk.min.js?v=229925ebd1"></script>
-    <script type="text/javascript">
-    ghost.init({
-      clientId: "ghost-frontend",
-      clientSecret: "be1cde3569b0"
-    });
-    </script>
+    <script type="text/javascript" src="https://www.foodanddating.com/public/ghost-sdk.min.js"></script>
 
   </head>
 
@@ -215,7 +209,7 @@
               <span class="fa fa-paper-plane"></span>
               <span class="btn-caption">Send us a story</span>
             </a>
-            
+
 
           </div>
           <!-- Main Headline End -->
@@ -273,7 +267,7 @@
           </div>
           <!-- Socials End -->
 
-        
+
           <!-- <div class="stayintouch">
 
             <a class="btn-square btn-outline dark-mute" href="#0" id="stayintouch-close">
@@ -294,13 +288,13 @@
                 <p class="reply-group__text">Thanks for your message. We will get back as soon as possible.</p>
               </div>
 
-           
+
               <form class="form form-dark no-padding" id="stayintouch-form">
-            
+
                 <input type="hidden" name="project_name" value="Axio Coming Soon Template">
                 <input type="hidden" name="admin_email" value="support@mixdesign.club">
                 <input type="hidden" name="form_subject" value="Stay-in-touch Contact Form Message">
-              
+
                 <input class="col-xs-12 animate" type="text" name="Name" placeholder="Your Name*" required>
                 <input class="col-xs-12 animate" type="email" name="Email" placeholder="Email Adress*" required>
                 <textarea class="col-xs-12 animate" name="Message" placeholder="Your Message*"></textarea>
@@ -310,7 +304,7 @@
                   <span class="btn-caption">Send</span>
                 </button>
               </form>
-             
+
 
             </div>
 
@@ -334,10 +328,10 @@
           <h2 class="second-edit">About us</h2>
           <p>I wonder if I've been changed in the night? Let me think. Was I the same when I got up this morning? I almost think I can remember feeling a little different. But if I'm not the same, the next question is 'Who in the world am I?' Ah, that's the great puzzle!</p>
         </div>
-  
+
         <div class="about-features">
 
-   
+
           <div class="col-xs-12 no-padding">
             <div class="col-xs-12 col-sm-6 feature-image feature-image-1" style="background-image:url(img/features/feature-1.jpg);"></div>
             <div class="col-xs-12 col-sm-6 feature-description">
@@ -413,7 +407,7 @@
             </div>
           </div>
         </div>
-        
+
 
       </div>
     </section> -->
@@ -456,7 +450,7 @@
               <a href="https://www.foodanddating.com" itemprop="contentUrl" target="_blank">
                 <img src="/img/gallery/fooddating.jpg" itemprop="thumbnail" alt="Food and Dating" />
                 <div class="overlay"></div>
-              
+
               <figcaption class="works-description" itemprop="for foodies and lovers">
                 <h4>Food&Dating</h4>
               </figcaption>
@@ -528,7 +522,7 @@
         <a class="btn-square btn-outline dark-mute section-close" href="#0" id="contact-close">
           <span class="fa fa-arrow-left"></span>
         </a>
- 
+
         <div class="section-title">
           <h2 class="second-edit">Get in touch</h2>
           <p>You can call us or leave a request here.
@@ -558,7 +552,7 @@
             <input type="hidden" name="project_name" value="Axio Coming Soon Template">
             <input type="hidden" name="admin_email" value="support@mixdesign.club">
             <input type="hidden" name="form_subject" value="Contact Form Message">
-       
+
 
             <input class="" type="text" name="Name" placeholder="Your Name*" required>
             <input class="" type="email" name="E-mail" placeholder="Email Adress*" required>
@@ -573,7 +567,7 @@
             </button>
 
           </form>
-    
+
 
         </div>
 
@@ -588,7 +582,7 @@
             </div>
           </div>
         </div>
-        
+
 
       </div>
     </section> -->
@@ -687,6 +681,49 @@
 <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
 
 <script>
+var clients = [
+  {
+    clientId: "ghost-frontend",
+    clientSecret: "be1cde3569b0"
+  },
+  {
+  clientId: "ghost-frontend",
+  clientSecret: "7b2f118f5491"
+},
+  {
+  clientId: "ghost-frontend",
+  clientSecret: "ebd926723225"
+  }
+];
+
+
+// ghost.init({
+//   clientId: "ghost-frontend",
+//   clientSecret: "be1cde3569b0"
+// });
+//
+//
+// ghost.init({
+// clientId: "ghost-frontend",
+// clientSecret: "7b2f118f5491"
+// });
+//
+//
+//
+//
+// ghost.init({
+// clientId: "ghost-frontend",
+// clientSecret: "ebd926723225"
+// });
+
+clients.forEach(function(client){
+  ghost.init(client);
+  $.get(
+    ghost.url.api('posts', {limit: 3})
+  ).done(onSuccess);
+})
+
+
 function onSuccess(data) {
   var $result = $('#blog-posts');
   $.each(data.posts, function (i, post) {
@@ -695,13 +732,20 @@ function onSuccess(data) {
       '<li>' + post.title + '</li>'
     );
   });
-}  
+}
 
-jQuery(document).ready(function () {
-  $.get(
-    ghost.url.api('posts', {limit: 3})
-  ).done(onSuccess);
-});
+// jQuery(document).ready(function () {
+//   $.get(
+//     ghost.url.api('posts', {limit: 3})
+//   ).done(onSuccess);
+// });
+
+// function getPosts(ghostInstance){
+//   $.get(
+//     ghostInstance.url.api('posts', {limit: 3})
+//   ).done(onSuccess);
+// }
+
 </script>
 </body>
 
