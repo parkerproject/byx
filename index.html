@@ -728,7 +728,20 @@ clients.forEach(function(client){
     ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
     $.get(
       ghost.url.api('posts', {limit: 2})
-    ).done(onSuccess);
+    ).done(function(data, client.url){
+      var $result = $('#blog-posts');
+      $.each(data.posts, function (i, post) {
+        console.log(post, client.url);
+        // var html = [
+        //   '<div>' + '<h2>' + post.title + '</h2>',
+        //
+        //   '</div>'
+        //
+        // ].join('');
+        $result.append(
+          '<div>' + post.title + '</div>'
+        );
+    });
 
 	})
 	.fail(function() {
