@@ -722,16 +722,18 @@ var clients = [
 
 clients.forEach(function(client){
 
+  var site = client.url;
+
   $.getScript(client.url + "/public/ghost-sdk.min.js")
 	.done(function() {
 
     ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
     $.get(
       ghost.url.api('posts', {limit: 2})
-    ).done(function(data, client.url){
+    ).done(function(data){
       var $result = $('#blog-posts');
       $.each(data.posts, function (i, post) {
-        console.log(post, client.url);
+        console.log(post, site);
         // var html = [
         //   '<div>' + '<h2>' + post.title + '</h2>',
         //
