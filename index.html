@@ -226,6 +226,7 @@
         <div class="main-aside col-xs-12 col-md-4 col-lg-3">
 
           <div class="aside-content">
+            <div class="blog-posts"></div>
             <!-- <p>Our website is under construction, but we are ready to go! Want to know more about us, tell us about your project or just to say hello? Drop us a line and we will get back as soon as possible.</p>
             <a href="#0" id="stayintouch-trigger" class="btn btn-outline dark">
               <span class="fa fa-pencil"></span>
@@ -709,13 +710,14 @@ clients.forEach(function(client){
 
         ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
         $.get(ghost.url.api('posts', {limit: 2})).done(function(data){
-            var $result = $('#blog-posts');
+            var $result = $('.blog-posts');
             $.each(data.posts, function (i, post) {
               console.log(post, site);
+              var html = ['<div>' + '<h2>' + post.title + '</h2>',
+                '<p>- <a href="'+ site + '/' + post.slug +'">' + site +  '</a></p>',
+                '</div>'].join('');
 
-              $result.append(
-                '<div>' + post.title + '</div>'
-              );
+              $result.append(html);
           });
 
     	   })
