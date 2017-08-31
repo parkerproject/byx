@@ -721,9 +721,8 @@ clients.forEach(function(client){
         $.get(ghost.url.api('posts', {limit: 2})).done(function(data){
             var $result = $('.blog-posts');
             $.each(data.posts, function (i, post) {
-              console.log(post, site);
-              var html = ['<div>' + '<h2 class="side-title">' + post.title + '</h2>',
-                '<p>- <a href="'+ site + '/' + post.slug +'">' + name +  '</a></p>',
+              // console.log(post, site);
+              var html = ['<div>' + '<h2 class="side-title"><a href="'+ site + '/' + post.slug +'">' + post.title + '</a></h2>',
                 '</div>'].join('');
 
               $result.append(html);
