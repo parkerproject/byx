@@ -700,90 +700,31 @@ var clients = [
   }
 ];
 
-
-// ghost.init({
-//   clientId: "ghost-frontend",
-//   clientSecret: "be1cde3569b0"
-// });
-//
-//
-// ghost.init({
-// clientId: "ghost-frontend",
-// clientSecret: "7b2f118f5491"
-// });
-//
-//
-//
-//
-// ghost.init({
-// clientId: "ghost-frontend",
-// clientSecret: "ebd926723225"
-// });
-
 clients.forEach(function(client){
 
   var site = client.url;
 
-  $.getScript(client.url + "/public/ghost-sdk.min.js")
-	.done(function() {
+  $.getScript(site + "/public/ghost-sdk.min.js")
+	  .done(function() {
 
-    ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
-    $.get(
-      ghost.url.api('posts', {limit: 2})
-    ).done(function(data){
-      var $result = $('#blog-posts');
-      $.each(data.posts, function (i, post) {
-        console.log(post, site);
-        // var html = [
-        //   '<div>' + '<h2>' + post.title + '</h2>',
-        //
-        //   '</div>'
-        //
-        // ].join('');
-        $result.append(
-          '<div>' + post.title + '</div>'
-        );
+        ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
+        $.get(ghost.url.api('posts', {limit: 2})).done(function(data){
+            var $result = $('#blog-posts');
+            $.each(data.posts, function (i, post) {
+              console.log(post, site);
+
+              $result.append(
+                '<div>' + post.title + '</div>'
+              );
+          });
+
+    	   })
+    	.fail(function() {
+    		console.log('failed in loop');
     });
 
-	})
-	.fail(function() {
-		console.log('failed in loop')
 });
-
-
-
-
-
 });
-
-
-function onSuccess(data) {
-  var $result = $('#blog-posts');
-  $.each(data.posts, function (i, post) {
-    console.log(data, post);
-    // var html = [
-    //   '<div>' + '<h2>' + post.title + '</h2>',
-    //
-    //   '</div>'
-    //
-    // ].join('');
-    $result.append(
-      '<div>' + post.title + '</div>'
-    );
-  });
-}
-
-// jQuery(document).ready(function () {
-//   $.get(
-//     ghost.url.api('posts', {limit: 3})
-//   ).done(onSuccess);
-// });
-
-// function getPosts(ghostInstance){
-//   $.get(
-//     ghostInstance.url.api('posts', {limit: 3})
-//   ).done(onSuccess);
-// }
 
 </script>
 </body>
