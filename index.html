@@ -698,19 +698,9 @@ function onSuccess(data) {
 }  
 
 jQuery(document).ready(function () {
-
-  var url = ghost.url.api('posts', {limit: 3});
-  console.log(url)
-
-  $.ajax({
-    url: 'https:' + url,
-    type: 'GET',
-    crossDomain: true,
-    dataType: 'jsonp',
-    success: onSuccess,
-    error: function() { console.log('Failed!'); }
-});
-
+  $.get(
+    ghost.url.api('posts', {limit: 3})
+  ).done(onSuccess);
 });
 </script>
 </body>
