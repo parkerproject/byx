@@ -120,8 +120,6 @@
 
     </style>
 
-    <script type="text/javascript" src="https://www.foodanddating.com/public/ghost-sdk.min.js"></script>
-
   </head>
 
   <body>
@@ -680,19 +678,25 @@
 
 <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
 
+
+<!-- <script type="text/javascript" src="https://www.foodanddating.com/public/ghost-sdk.min.js"></script> -->
+
 <script>
 var clients = [
   {
     clientId: "ghost-frontend",
-    clientSecret: "be1cde3569b0"
+    clientSecret: "be1cde3569b0",
+    url: 'https://www.foodanddating.com'
   },
   {
   clientId: "ghost-frontend",
-  clientSecret: "7b2f118f5491"
+  clientSecret: "7b2f118f5491",
+  url: 'https://www.activeman.com'
 },
   {
   clientId: "ghost-frontend",
-  clientSecret: "ebd926723225"
+  clientSecret: "ebd926723225",
+  url: 'https://www.contentbees.com'
   }
 ];
 
@@ -717,11 +721,25 @@ var clients = [
 // });
 
 clients.forEach(function(client){
-  ghost.init(client);
-  $.get(
-    ghost.url.api('posts', {limit: 3})
-  ).done(onSuccess);
-})
+
+  $.getScript(client.url + "/public/ghost-sdk.min.js")
+	.done(function() {
+
+    ghost.init(client);
+    $.get(
+      ghost.url.api('posts', {limit: 2})
+    ).done(onSuccess);
+
+	})
+	.fail(function() {
+		console.log('failed in loop')
+});
+
+
+
+
+
+});
 
 
 function onSuccess(data) {
