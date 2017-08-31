@@ -118,6 +118,11 @@
         font-size: 3em!important;
       }
 
+      .side-title{
+        font-size: 2.8rem;
+        line-height: 1.16;
+      }
+
     </style>
 
   </head>
@@ -687,23 +692,27 @@ var clients = [
   {
     clientId: "ghost-frontend",
     clientSecret: "be1cde3569b0",
-    url: 'https://www.foodanddating.com'
+    url: 'https://www.foodanddating.com',
+    name: 'Food and Dating'
   },
   {
   clientId: "ghost-frontend",
   clientSecret: "7b2f118f5491",
-  url: 'https://www.activeman.com'
+  url: 'https://www.activeman.com',
+  name: 'ActiveMan'
 },
   {
   clientId: "ghost-frontend",
   clientSecret: "ebd926723225",
-  url: 'https://www.contentbees.com'
+  url: 'https://www.contentbees.com',
+  name: 'ContentBees'
   }
 ];
 
 clients.forEach(function(client){
 
   var site = client.url;
+  var name = client.name;
 
   $.getScript(site + "/public/ghost-sdk.min.js")
 	  .done(function() {
@@ -713,8 +722,8 @@ clients.forEach(function(client){
             var $result = $('.blog-posts');
             $.each(data.posts, function (i, post) {
               console.log(post, site);
-              var html = ['<div>' + '<h2>' + post.title + '</h2>',
-                '<p>- <a href="'+ site + '/' + post.slug +'">' + site +  '</a></p>',
+              var html = ['<div>' + '<h2 class="side-title">' + post.title + '</h2>',
+                '<p>- <a href="'+ site + '/' + post.slug +'">' + name +  '</a></p>',
                 '</div>'].join('');
 
               $result.append(html);
