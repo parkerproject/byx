@@ -745,9 +745,15 @@ clients.forEach(function(client){
 function onSuccess(data) {
   var $result = $('#blog-posts');
   $.each(data.posts, function (i, post) {
-    console.log(post);
+    console.log(data, post);
+    // var html = [
+    //   '<div>' + '<h2>' + post.title + '</h2>',
+    //
+    //   '</div>'
+    //
+    // ].join('');
     $result.append(
-      '<li>' + post.title + '</li>'
+      '<div>' + post.title + '</div>'
     );
   });
 }
