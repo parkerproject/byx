@@ -725,7 +725,7 @@ clients.forEach(function(client){
   $.getScript(client.url + "/public/ghost-sdk.min.js")
 	.done(function() {
 
-    ghost.init(client);
+    ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
     $.get(
       ghost.url.api('posts', {limit: 2})
     ).done(onSuccess);
