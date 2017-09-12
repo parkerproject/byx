@@ -472,15 +472,6 @@
             <!-- Works Gallery Single Item End -->
 
             <!-- Works Gallery Single Item Start -->
-            <figure class="col-xs-12 col-sm-6 col-lg-4" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-              <a href="https://www.contentbees.com" itemprop="contentUrl" target="_blank">
-                <img src="/img/gallery/contentbees.jpg" itemprop="thumbnail" alt="contentbees" />
-                <div class="overlay"></div>
-              <figcaption class="works-description" itemprop="contentbees">
-                <h4>ContentBees</h4>
-              </figcaption>
-              </a>
-            </figure>
             <!-- Works Gallery Single Item End -->
 
             <!-- Works Gallery Single Item Start -->
@@ -709,13 +700,7 @@ var clients = [
   clientSecret: "7b2f118f5491",
   url: 'https://www.activeman.com',
   name: 'ActiveMan'
-},
-  {
-  clientId: "ghost-frontend",
-  clientSecret: "ebd926723225",
-  url: 'https://www.contentbees.com',
-  name: 'ContentBees'
-  }
+}
 ];
 
 clients.forEach(function(client){
@@ -727,7 +712,7 @@ clients.forEach(function(client){
 	  .done(function() {
 
         ghost.init({ clientId: client.clientId, clientSecret: client.clientSecret});
-        $.get(ghost.url.api('posts', {limit: 2})).done(function(data){
+        $.get(ghost.url.api('posts', {limit: 3})).done(function(data){
             var $result = $('.blog-posts');
             $.each(data.posts, function (i, post) {
               // console.log(post, site);
